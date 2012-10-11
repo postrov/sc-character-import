@@ -195,3 +195,23 @@ class CharacterData:
 #        ret = [str, agi + 956, 250, crit, hit, exp, haste, mast]
 #        pp.pprint(ret)
         return ret
+
+    def get_current_spec_data(self):
+        specs_data = self.raw_data['data'][u'talents']
+        if u'selected' in specs_data[0]:
+            current_spec_data = specs_data[0]
+        else:
+            current_spec_data = specs_data[1]
+
+        return current_spec_data
+
+    def get_talents(self):
+        spec_data = self.get_current_spec_data()
+        talents = [""] * 6
+        for t in spec_data[u'talents']:
+            talents[t[u'tier']] = str(t[u'column'] + 1)
+        return "".join(talents)
+
+    def get_glyphs(self):
+        # TODO implement
+        return []
