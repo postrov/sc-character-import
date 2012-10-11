@@ -6,8 +6,9 @@ Character import for use ShadowCraft scripts.
 This is quick and dirty implementation of character import from
 battle.net profiles.
 
-Included example shadowcraft scripts are taken from ShadowCraft, I
-only edited them to use this character import instead of fixed
+Included example shadowcraft scripts are taken from ShadowCraft
+(https://github.com/dazer/ShadowCraft-Engine). I did not write them.
+I only edited them to use this character import instead of fixed
 values. To run them for your character you need to edit them and
 replace region, realm and character name with your own.
 
