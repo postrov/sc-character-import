@@ -106,6 +106,46 @@ class CharacterData:
                                 u'legs'     : 'Legguards of the Thousandfold Blades'},
                      'set_bonus' : {2 : 'rogue_t14_2pc', 4 : 'rogue_t14_4pc'}}}
 
+    glyphs = {# Major
+              u'Glyph of Adrenaline Rush'          :     'adrenaline_rush',    
+              u'Glyph of Ambush'                   :     'ambush',             
+              u'Glyph of Blade Flurry'             :     'blade_flurry',       
+              u'Glyph of Blind'                    :     'blind',              
+              u'Glyph of Cheap Shot'               :     'cheap_shot',         
+              u'Glyph of Cloak of Shadows'         :     'cloak_of_shadows',   
+              u'Glyph of Crippling Poison'         :     'crippling_poison',   
+              u'Glyph of Deadly Momentum'          :     'deadly_momentum',    
+              u'Glyph of Debilitation'             :     'debilitation',       
+              u'Glyph of Evasion'                  :     'evasion',            
+              u'Glyph of Expose Armor'             :     'expose_armor',       
+              u'Glyph of Feint'                    :     'feint',              
+              u'Glyph of Garrote'                  :     'garrote',            
+              u'Glyph of Gouge'                    :     'gouge',              
+              u'Glyph of Kick'                     :     'kick',               
+              u'Glyph of Recuperate'               :     'recuperate',         
+              u'Glyph of Sap'                      :     'sap',                
+              u'Glyph of Shadow Walk'              :     'shadow_walk',        
+              u'Glyph of Shiv'                     :     'shiv',               
+              u'Glyph of Smoke Bomb'               :     'smoke_bomb',         
+              u'Glyph of Sprint'                   :     'sprint',             
+              u'Glyph of Stealth'                  :     'stealth',            
+              u'Glyph of Vanish'                   :     'vanish',             
+              u'Glyph of Vendetta'                 :     'vendetta',           
+              # Minor                             
+              u'Glyph of Blurred Speed'            :     'blurred_speed',      
+              u'Glyph of Decoy'                    :     'decoy',              
+              u'Glyph of Detection'                :     'detection',          
+              u'Glyph of Disguise'                 :     'disguise',           
+              u'Glyph of Distract'                 :     'distract',           
+              u'Glyph of Hemorrhage'               :     'hemorrhage',         
+              u'Glyph of Killing Spree'            :     'killing_spree',      
+              u'Glyph of Pick Lock'                :     'pick_lock',          
+              u'Glyph of Pick Pocket'              :     'pick_pocket',        
+              u'Glyph of Poisons'                  :     'poisons',            
+              u'Glyph of Safe Fall'                :     'safe_fall',          
+              u'Glyph of Tricks of the Trade'      :     'tricks_of_the_trade'}
+
+
     def __init__(self, region, realm, name):
         self.region = region
         self.realm = realm
@@ -161,8 +201,8 @@ class CharacterData:
         procs += self.get_trinket_procs()
         return procs
 
-    def get_set_boni(self):
-        set_boni = []
+    def get_set_bonuses(self):
+        set_bonuses = []
         for set_name in CharacterData.sets:
             s = CharacterData.sets[set_name]
             pieces = s['pieces']
@@ -172,13 +212,12 @@ class CharacterData:
                     pieces_found += 1
 #                    print 'found set piece, set: %s, pieces so far: %d' % (set_name, pieces_found)
                     if pieces_found in s['set_bonus']:
-                        set_boni.append(s['set_bonus'][pieces_found])
-        print set_boni
-        return set_boni
+                        set_bonuses.append(s['set_bonus'][pieces_found])
+        return set_bonuses
 
     def get_gear_buffs(self):
         gear_buffs = []
-        gear_buffs += self.get_set_boni()
+        gear_buffs += self.get_set_bonuses()
         return gear_buffs
 
     def get_stats(self):
@@ -213,5 +252,11 @@ class CharacterData:
         return "".join(talents)
 
     def get_glyphs(self):
-        # TODO implement
-        return []
+        glyphs = []
+        spec_data = self.get_current_spec_data()
+        glyphs_data = spec_data[u'glyphs']
+        for g in (glyphs_data[u'major'] + glyphs_data[u'minor']):
+            glyph_name = g[u'name']
+            if glyph_name in CharacterData.glyphs:
+                glyphs.append(CharacterData.glyphs[glyph_name])
+        return glyphs

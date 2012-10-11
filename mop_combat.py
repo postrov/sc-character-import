@@ -74,7 +74,7 @@ test_stats = stats.Stats(*(character_stats + [test_mh, test_oh, test_procs, test
 test_talents = talents.Talents(character_data.get_talents(), test_class, test_level)
 
 # Set up glyphs.
-glyph_list = ['recuperate', 'adrenaline_rush']
+glyph_list = character_data.get_glyphs()
 test_glyphs = glyphs.Glyphs(test_class, *glyph_list)
 
 # Set up settings.
