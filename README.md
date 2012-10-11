@@ -1,7 +1,7 @@
 sc-character-import
 ===================
 
-Character import for use ShadowCraft scripts.
+Character import for use with ShadowCraft scripts.
 
 This is quick and dirty implementation of character import from
 battle.net profiles.
