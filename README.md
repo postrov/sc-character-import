@@ -33,3 +33,4 @@ Known issues:
 * Glyphs are not imported yet
 * It will most likely crash if you try running it on a character
   profile with some gear pieces not equipped
+* Weapon type recognition needs work, for now it's 1.8 -> dagger, 1.8+ -> axe
