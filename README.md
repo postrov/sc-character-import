@@ -1,3 +1,10 @@
+UPDATE:
+=======
+
+The scripts have been imported to dazer's ShadowCraft-Engine repository.
+There are also several fixes there, so it's best to just pull ShadowCraft-Engineinstead of this repository.
+
+
 sc-character-import
 ===================
 
